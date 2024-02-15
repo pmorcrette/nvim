@@ -60,6 +60,18 @@ require("lazy").setup({
 		opts = {},
 	},
 	"nvim-treesitter/nvim-treesitter",
+	{
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+	-- install jsregexp (optional!).
+	build = "make install_jsregexp",
+	dependencies = { 
+		"rafamadriz/friendly-snippets",
+		"molleweide/LuaSnip-snippets.nvim",
+		},
+	},
+	"windwp/nvim-autopairs",
 
 })
 
@@ -98,6 +110,10 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
   })
 })
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_snipmate").lazy_load()
+
+
 vim.g.mapleader = " "
 local wk = require("which-key")
 
@@ -117,6 +133,9 @@ local mappings = {
 	},
 	["g"] = {
 		"<cmd>Neogit cwd=%:p:h<cr>", "Git",
+	},
+	["l"] = {
+		"<cmd>Lazy<cr>", "Lazy",
 	},
 }
 
