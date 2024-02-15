@@ -58,7 +58,8 @@ require("lazy").setup({
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons"},
 		opts = {},
-	}
+	},
+	"nvim-treesitter/nvim-treesitter",
 
 })
 
@@ -97,6 +98,28 @@ cmp.setup({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
   })
 })
-
+vim.g.mapleader = " "
 local wk = require("which-key")
+
+local opts = {
+  mode = "n", -- NORMAL mode
+  prefix = "<leader>",
+  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+  silent = true, -- use `silent` when creating keymaps
+  noremap = true, -- use `noremap` when creating keymaps
+  nowait = true, -- use `nowait` when creating keymaps
+}
+
+
+local mappings = {
+	["f"] = {
+		"<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>", "Find files",
+	},
+	["g"] = {
+		"<cmd>Neogit cwd=%:p:h<cr>", "Git",
+	},
+}
+
+
+
 wk.register(mappings, opts)
