@@ -71,8 +71,11 @@ require("lazy").setup({
 		"molleweide/LuaSnip-snippets.nvim",
 		},
 	},
-	"windwp/nvim-autopairs",
-
+	{ 
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		opts = {}
+	},
 })
 
 vim.cmd[[colorscheme tokyonight]]
@@ -137,8 +140,12 @@ local mappings = {
 	["l"] = {
 		"<cmd>Lazy<cr>", "Lazy",
 	},
+	["p"] = {
+		name = "Personal config",
+		["f"] = {
+			"<cmd>edit ~/.config/nvim/init.lua<cr>", "Open init.lua", 
+		},
+	}
 }
-
-
 
 wk.register(mappings, opts)
